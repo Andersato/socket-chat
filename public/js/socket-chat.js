@@ -13,22 +13,19 @@ let usuario = {
 
 socket.on('connect', () => {
     socket.emit('entrarChat', usuario, (resp) => {
-        console.log(resp);
+        renderizarUsuarios(resp)
     })
 });
 
 socket.on('crearMensaje', (mensaje) => {
-    console.log('Servidor:', mensaje);
+    renderizarMensajes(mensaje, false)
+    scrollBottom()
 })
 
 socket.on('listaPersona', (personas) => {
-    console.log('Servidor:', personas);
+    renderizarUsuarios(personas)
 })
 
 socket.on('mensajePrivado', (mensaje) => {
     console.log(`Mensaje privado: ${mensaje}`);
 })
-
-// socket.emit('crearMensaje', {
-
-// })
